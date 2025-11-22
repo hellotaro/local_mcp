@@ -7,10 +7,10 @@ mcp = FastMCP("Demo", json_response=True)
 
 # Add addition tools
 @mcp.tool()
-def search_file(filename_pattern: str) -> int:
+def search_file(filename_pattern: str) -> list[str]:
     """Find filename list matching with filename_pattern"""
     filenames = []
-    for filename in glob.glob("./data", filename_pattern, recursive=True):
+    for filename in glob.glob("./data/" + filename_pattern, recursive=True):
         filenames.append(filename)
     return filenames
 

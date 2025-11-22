@@ -25,6 +25,10 @@ async def main():
             prompts = await session.list_prompts()
             print(f"Available prompts: {[prompt.name for prompt in prompts.prompts]}")
 
+            # Call Tool
+            tool_res = await session.call_tool("search_file", {"filename_pattern": "file*"})
+            filenames = tool_res.structuredContent["result"]
+            print(filenames)
 
 if __name__ == "__main__":
     asyncio.run(main())
